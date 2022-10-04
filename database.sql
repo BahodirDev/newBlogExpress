@@ -1,0 +1,16 @@
+
+
+CREATE TABLE author(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    login VARCHAR(30) NOT NULL,
+    password VARCHAR(25) NOT NULL,
+    UNIQUE(login)
+);
+
+CREATE TABLE posts(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    body VARCHAR(90) NOT NULL,
+    postedBy BIGINT NOT NULL REFERENCES author(id)
+);

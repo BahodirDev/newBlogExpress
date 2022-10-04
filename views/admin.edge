@@ -1,0 +1,60 @@
+@layout('layout/body');
+
+@section('content')
+<header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Control Panel</h1>
+                    <span class="subheading">Update something to permit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <div style="padding:20px;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>post</th>
+                    <th>config</th>
+                </tr>
+            </thead>
+            <tbody>
+             @each(item in posts)
+               <tr>
+                <td>
+                    {{item.id}}
+                </td>
+                <td>
+                    {{item.first_name}}
+                </td>
+                <td>
+                    {{item.body}}
+                </td>
+                <td>
+                    <div style="display:flex;justify-content:space-around;">
+                        @if(item.istrue == false)
+                        <form action="post/update/{{item.id}}" method="post">
+                            <button class="btn btn-primary rounded">Allow</button>
+                        </form>
+                        @else
+                        <form action="post/update2/{{item.id}}" method="post">
+                            <button class="btn btn-danger rounded">Restrict</button>
+                        </form>
+                        @endif
+                        <form action="post/delete/{{item.id}}" method="POST">
+                            <button class="btn btn-danger rounded">Remove</button>
+                        </form>
+                    </div>
+                   
+                </td>
+               </tr>
+             @endeach
+            </tbody>
+        </table>
+    </div>
+@endsection
